@@ -1,0 +1,45 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+<div class="main">
+    <div class="container">
+        <div class="centered-page-header text-center">
+            {{#post}}
+            <h1 class="title">{{title}}</h1>
+            <div class="description">
+                {{content}}
+            </div>
+            {{/post}}
+        </div>
+        <div class="row">
+            {{#get "authors" limit="all" include="count.posts" order="count.posts desc"}}
+            {{#foreach authors}}
+            <div class="col-xl-4 col-lg-6 col-md-6 author-card-wrap">
+                <a href="{{url}}" class="author-card">
+                    <div class="avatar-wrap">
+                        {{#if profile_image}}
+                        <img class="avatar" src="{{img_url profile_image size="xxs"}}" loading="lazy" alt="{{name}}">
+                        {{else}}
+                        <div class="avatar no-image">{{> icons/user}}</div>
+                        {{/if}}
+                    </div>
+                    <div class="author-info">
+                        <h2 class="name h5">{{name}}</h3>
+                        <div class="author-meta">
+                            {{#if location}}
+                            <span class="author-location">{{location}}</span>
+                            {{/if}}
+                            <span class="post-count">{{plural count.posts empty=(t "0 post") singular=(t "1 post") plural=(t "% posts")}}</span>
+                        </div>
+                        {{#if bio}}
+                        <div class="bio">
+                            {{{bio}}}
+                        </div>
+                        {{/if}}
+                    </div>
+                </a>
+            </div>
+            {{/foreach}}
+            {{/get}}
+        </div>
+    </div>
+</div>

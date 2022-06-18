@@ -1,0 +1,37 @@
+{{!-- This shows the premium subscription option between post list and after paid post content- preview --}}
+<div class="paid-membership-cta flex">
+    <div class="text-wrap">
+        <h2 class="title">{{t "Subscribe to  premium membership plan"}}</h2>
+        <div class="description">
+            {{t "Get access to all premium content and enjoy reading without any distraction"}}<br>
+            {{#link href="/membership/" class="plan-page-link hidden-small" }}{{t "Compare plan"}} {{> icons/arrow-right}}{{/link}}
+        </div>
+    </div>
+    <div class="plans-wrap flex">
+        <div class="plans-wrap-inner flex">
+            <div class="plan text-center flex">
+                <h3 class="h6 plan-name">{{t "Yearly"}}</h3>
+                <div class="price h1"><sup>{{price currency=@price.currency}}</sup>{{@price.yearly}}</div>
+                <div class="content">
+                    <span class="label label-success js-discount">{{t "Save"}} <span class="js-discount-amount">0%</span></span>
+                </div>
+                <a href="javascript:" data-members-plan="Yearly" class="btn btn-block btn-sm"><span>{{t "Subscribe now"}}</span></a>
+            </div>
+            <div class="plan text-center flex">
+                <h3 class="h6 plan-name">{{t "Monthly"}}</h3>
+                <div class="price h1"><sup>{{price currency=@price.currency}}</sup>{{@price.monthly}}</div>
+                <div class="content"></div>
+                <a href="javascript:" data-members-plan="Monthly" class="btn btn-block btn-sm"><span>{{t "Subscribe now"}}</span></a>
+            </div>
+        </div>
+        <div>
+            {{#link href="/membership/" class="plan-page-link hidden-large" }}{{t "Compare plan"}} {{> icons/arrow-right}}{{/link}}
+        </div>
+    </div>
+</div>
+
+{{!-- following block of code will be inserted at scripts block in default.hbs  --}}
+{{#contentFor "scripts"}}
+{{> scripts/paid-membership-cta-resize}}
+{{> scripts/discount-calculator}}
+{{/contentFor}}

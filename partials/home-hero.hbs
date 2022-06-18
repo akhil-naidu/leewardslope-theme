@@ -1,0 +1,35 @@
+<section class="home-cover-area">
+    <div class="container">
+        <div class="row home-cover-wrap{{#if @site.cover_image}} has-cover-image{{/if}}">
+            {{#if @site.cover_image}}
+            <div class="col-lg-5">
+                <div class="cover-img-container">
+                    <div class="cover-img-wrap">
+                        <img  loading="lazy"
+                            srcset="{{img_url @site.cover_image size="s"}} ,
+                                    {{img_url @site.cover_image size="m"}} 1.5x"
+                            src="{{img_url @site.cover_image size="s"}}" alt="{{@site.title}} cover image">
+
+                        <div class="dot-parent dot-1"><div class="dot"></div></div>
+                        <div class="dot-parent dot-2"><div class="dot"></div></div>
+                        <div class="dot-parent dot-3"><div class="dot"></div></div>
+                        <div class="dot-parent dot-4"><div class="dot"></div></div>
+                        <div class="dot-parent dot-5"><div class="dot"></div></div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+            <div class="col-lg-7">
+                <div class="home-cover-content-wrap">
+                    <h1 class="heading-large">Hay, I am Akhil</h1>
+                    <div class="intro-description">
+                        {{@site.description}}
+                    </div>
+                    {{> home-hero-subscription}}
+                    {{> social-links}}
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>

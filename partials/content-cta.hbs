@@ -1,0 +1,20 @@
+{{{html}}}
+{{#has visibility="paid"}}
+{{!-- show below content preview on paid post --}}
+<div class="text-center">
+    <h2 class="h3">{{t "This post is for paying subscribers only"}}</h2>
+    <p>{{t "Sign up now to read this article and get access to all premium posts."}}<br>
+    {{t "Already have an account?"}} {{#link href="/signin/"}}{{t "Sign In"}}{{/link}}</p>
+</div>
+{{> paid-membership-cta}}
+{{else}}
+{{!-- show below content preview on member only post  --}}
+<div class="free-membership-cta text-center">
+    <h2 class="title h3">{{t "This post is for subscribers only"}}</h2>
+    <div class="description">{{t "Sign up to read this post and all other free member only posts."}}</div>
+    <div class="button-wrap">
+        {{#link class="btn btn-alternate" href="/signup/"}}{{t "Sign up now"}}{{/link}}
+    </div>
+    <div class="sign-in-cta"><small>{{t "Already have an account?"}} {{#link href="/signin/"}}{{t "Sign In"}}{{/link}}</small></div>
+</div>
+{{/has}}

@@ -1,0 +1,35 @@
+{{#get "posts" limit="4" filter="tag:{{primary_tag.slug}}+id:-{{comment_id}}" include="tags"}}
+{{#if posts}}
+<div class="container">
+    <div class="related-posts-wrap">
+    <h3 class="section-title h5 text-center">{{t "You might also like"}}</h3>
+        <div class="row">
+            {{#foreach posts}}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <article class="related-post-card">
+                {{#if feature_image}}
+                <a href="{{url}}" class="post-img-wrap">
+                    <img class="post-img" loading="lazy"
+                        srcset="{{img_url feature_image size="xs"}} 250w,
+                                {{img_url feature_image size="s"}} 400w,
+                                {{img_url feature_image size="m"}} 600w,
+                                {{img_url feature_image size="l"}} 1000w,"
+                        sizes="(max-width: 432px) 400px, (max-width: 575px) 600px, (max-width: 628px) 250px, 400px"
+                        src="{{img_url feature_image size="s"}}" alt="{{title}}">
+                </a>
+                {{/if}}
+                <div class="post-info-wrap">
+                    <h2 class="h5 post-title"><a href="{{url}}">{{title}}</a></h2>
+                    <div class="post-meta">
+                        <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM DD, YYYY"}}</time>
+                        <span class="read-time">{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
+                    </div>
+                </div>
+            </article>
+            </div>
+            {{/foreach}}
+        </div>
+    </div>
+</div>
+{{/if}}
+{{/get}}

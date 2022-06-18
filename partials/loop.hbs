@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1 js-post-list-wrap">
+            {{#is "home"}}
+                <h2 class="h4 section-title"><span>{{t "Featured posts"}}</span></h2>
+                {{#get "posts" limit="3" include="tags,authors" filter="featured:true"}}
+                    {{#foreach posts}}
+                    {{> post-item}}
+                    {{/foreach}}
+                {{/get}}
+                <h2 class="h4 section-title"><span>{{t "Latest posts"}}</span></h2>
+            {{/is}}
+            {{#foreach posts}}
+                {{!--  
+                If not paid member, show premium subscription option above post number 3 on home page.
+                Show it above post number 5 on paginated pages ( visible when normal pagination is being used )
+                --}}
+                {{#unless @member.paid}}
+                    {{#is "home"}}
+                        {{#has number="3"}}
+                        {{> paid-membership-cta}}
+                        {{/has}}
+                    {{else}}
+                        {{#has number="5"}}
+                        {{> paid-membership-cta}}
+                        {{/has}}
+                    {{/is}}
+                {{/unless}}
+                {{!-- end premium subscription option card --}}
+                {{> post-item}}
+            {{/foreach}}
+        </div>
+    </div>
+</div>

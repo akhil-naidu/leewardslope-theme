@@ -1,0 +1,40 @@
+<article class="post-card flex">
+    {{#if feature_image}}
+    <a href="{{url}}" class="post-img-wrap">
+        <img class="post-img" loading="lazy"
+        srcset="{{img_url feature_image size="xs"}} 250w,
+                {{img_url feature_image size="s"}} 400w,
+                {{img_url feature_image size="m"}} 600w, 
+                {{img_url feature_image size="l"}} 1000w"
+        sizes="(max-width:432px) 400px, (max-width:696px) 600px, (max-width:767px) 671px, 400px"
+        src="{{img_url feature_image size="xs"}}" alt="{{title}}">
+    </a>
+    {{/if}}
+    <div class="post-info-wrap">
+        <div class="flex post-top-meta">
+            {{#primary_tag}}
+            <div class="tag-wrap"><a href="{{url}}"{{#if accent_color}} style="background:{{accent_color }}"{{/if}}>{{name}}</a></div>
+            {{/primary_tag}}
+            {{#if featured}}
+            <div class="featured-icon" aria-label="Featured post icon"><svg><use xlink:href="#i-star"/></svg></div>
+            {{/if}}
+        </div>
+        <h2 class="h3 post-title"><a href="{{url}}">{{title}}</a></h2>
+        <div class="post-excerpt">
+            {{excerpt}}
+        </div>
+        <div class="post-meta">
+            <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM DD, YYYY"}}</time>
+            <span class="read-time">{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
+            {{#has visibility="public"}}
+            <span class="visibility">{{t "Public"}}</span>
+            {{/has}}
+            {{#has visibility="members"}}
+            <span class="visibility">{{t "Members"}}</span>
+            {{/has}}
+            {{#has visibility="paid"}}
+            <span class="visibility">{{t "Paid"}}</span>
+            {{/has}}
+        </div>
+    </div>
+</article>

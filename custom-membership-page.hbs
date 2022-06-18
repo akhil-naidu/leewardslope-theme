@@ -1,0 +1,67 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+<div class="main">
+    <div class="container">
+        <div class="centered-page-header text-center">
+            {{#post}}
+            <h1 class="title">{{title}}</h1>
+            {{#unless @member.paid}}
+            <div class="description">
+                {{content}}
+            </div>
+            {{/unless}}
+            {{/post}}
+        </div>
+        <div class="row">
+            {{#if @member.paid}}
+            {{!-- Logged in, paying member: show account page link --}}
+            <div class="post-content">
+                <div class="col-md-8 offset-md-2">
+                    {{t "Hay! You have already subscribed to premium membership plan. To see your account information please"}} {{#link href="/account/"}}{{t "visit account Page"}}{{/link}}
+                </div>
+            </div>
+            {{else if @member}}
+            {{!-- free member: show premium plans --}}
+            <div class="col-lg-4 col-md-6 offset-md-2">
+                {{> members/pricing-table-yearly}}
+            </div>
+            <div class="col-lg-4 col-md-6">
+                {{> members/pricing-table-monthly}}
+            </div>
+            {{else}}
+            {{!-- guest visitor: show all plans --}}
+            <div class="col-lg-4 col-md-6">
+                {{> members/pricing-table-free}}
+            </div>
+            <div class="col-lg-4 col-md-6">
+                {{> members/pricing-table-yearly}}
+            </div>
+            <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
+                {{> members/pricing-table-monthly}}
+            </div>
+            {{/if}}
+        </div>
+        {{#unless @member.paid}}
+        <div class="row">
+            <div class="col-12">
+                <div class="pricing-currency">
+                    <small><sup>*</sup> {{t "All price is in"}} <span class="currency-name">{{@price.currency}}</span></small>
+                </div>
+            </div>
+        </div>
+        {{/unless}}
+        <div class="row">
+            <div class="col-12">
+                {{^if @member}}
+                <div class="text-center membership-footer">
+                    <small>{{t "Already have an account?"}} <a href="{{@site.url}}/signin/">{{t "Sign in"}}</a></small>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{{#contentFor "scripts"}}
+{{> scripts/discount-calculator}}
+{{/contentFor}}

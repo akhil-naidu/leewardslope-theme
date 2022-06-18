@@ -1,0 +1,13 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the {body} of the default.hbs template --}}
+{{#is "home"}}
+{{> home-hero}}
+{{/is}}
+<div class="main">
+    {{> loop}}
+    {{pagination}}
+</div>
+{{!-- newsletter subscription visible to non-member visitor --}}
+{{#unless @member}}
+{{> newsletter-subscription}}
+{{/unless}}

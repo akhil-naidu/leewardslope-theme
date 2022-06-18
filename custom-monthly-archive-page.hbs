@@ -1,0 +1,29 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+<div class="main">
+    <div class="container">
+        <div class="centered-page-header text-center">
+            {{#post}}
+            <h1 class="title">{{title}}</h1>
+            <div class="description">
+                {{content}}
+            </div>
+            {{/post}}
+        </div>
+        <div class="archive-wrap">
+            {{#get "posts" limit="all"}}
+            {{#foreach posts}}
+            <div class="archive-post-card pm-{{date format="M"}}">
+                <div class="pm">{{date format="MMMM YYYY"}}</div>
+                <article class="archive-post">
+                    <div class="inner">
+                        <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM DD"}} -</time>
+                        <h2 class="title"><a href="{{url}}">{{title}}</a></h2>
+                    </div>
+                </article>
+            </div>
+            {{/foreach}}
+            {{/get}}
+        </div>
+    </div>
+</div>

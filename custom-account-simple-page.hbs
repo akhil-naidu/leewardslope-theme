@@ -1,0 +1,53 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the {body} of the default.hbs template --}}
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="centered-page-header text-center">
+                    {{#post}}
+                    <h1 class="title">{{title}}</h1>
+                    <div class="description">
+                        {{content}}
+                    </div>
+                    {{/post}}
+                </div>
+                {{#if @member}}
+                <div class="col-md-8 offset-md-2">
+                    <div class="subscriber-wrap">
+                        <div class="member-avatar-wrap">
+                            <svg><use xlink:href="#i-user"/></svg>
+                            {{#if @member.avatar_image}}
+                            <img class="avatar-img" src="{{@member.avatar_image}}" loading="lazy" alt="{{@member.name}}"/>
+                            {{/if}}
+                        </div>
+                        {{#if @member.name}}
+                        <h2 class="h3 text-center">{{@member.name}}</h2>
+                        {{/if}}
+                        <div class="account-description text-center">
+                            {{t "Hey! You have an active account with access to posts for subscribers."}}
+                        </div>
+                        
+                    </div>
+                    <div class="subscription-info-wrap flex">
+                        {{#if @member.name}}
+                        <div class="subs-info">
+                            <div class="info-label">{{t "Name:"}}</div>
+                            <div class="info-content">{{@member.name}}</div>
+                        </div>
+                        {{/if}}
+                        <div class="subs-info">
+                            <div class="info-label">{{t "Email address:"}}</div>
+                            <div class="info-content">{{@member.email}}</div>
+                        </div>
+                    </div>
+                </div>
+                {{else}}
+                {{!-- Not logged in: Redirect to signin page --}}
+                <script>window.location = '{{@site.url}}/signin/';</script>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+{{!> top-tags}}

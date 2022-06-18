@@ -1,0 +1,24 @@
+<div class='pricing-table'>
+  <div class='table-header text-center'>
+    <div class='table-title'>{{t 'Yearly plan'}}</div>
+    <div class='price h1'>
+      <sup class='currency'>{{price
+          currency=@price.currency
+        }}</sup>{{@price.yearly}}
+    </div>
+  </div>
+  <ul class='table-details icon-list'>
+    <li>Access to free private posts</li>
+    <li>Premium Forem hosting</li>
+    <li>Forem Admin Guide</li>
+    <li>CDN, SSL, Cloud Image Hosting</li>
+    <li>Special access to selfhost.dev</li>
+    <li>One to One support from Akhil</li>
+  </ul>
+  <div class='table-footer'>
+    <a class='btn btn-block' href='javascript:' data-members-plan='Yearly'><span
+      >{{t 'Subscribe now'}}</span></a>
+  </div>
+  <span class='label label-success js-discount'>{{t 'Save'}}
+    <span class='js-discount-amount'>0%</span></span>
+</div>

@@ -1,0 +1,43 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the {body} of the default.hbs template --}}
+{{!-- {{#is "home"}}
+{{> home-hero}}
+{{/is}} --}}
+<div class="main">
+    {{#tag}}
+    <div class="container">
+        <div class="archive-cover">
+            <div class="archive-cover-inner cover-tag flex{{#if feature_image}} has-image{{/if}}">
+                {{#if feature_image}}
+                <img class="cover-image lazy" loading="lazy"
+                    srcset="{{img_url feature_image size="s"}} 400w,
+                        {{img_url feature_image size="m"}} 600w, 
+                        {{img_url feature_image size="l"}} 1000w,
+                        {{img_url feature_image size="l"}} 1200w"
+                    sizes="(max-width: 432px) 400px, (max-width: 696px) 600px, (max-width: 1096px) 1000px, 1200px"
+                    src="{{img_url feature_image size="m"}}" alt="tag feature image">
+                {{/if}}
+                <div class="cover-content-wrapper">
+                    <div class="tag-info-wrap text-center">
+                        <h1 class="tag-name h2">{{name}}</h1>
+                        <div class="archive-info">
+                            <span class="post-count">{{plural ../pagination.total empty=(t "0 Post") singular=(t "1 Post") plural=(t "% Posts")}}</span>
+                        </div>
+                        {{#if description}}
+                        <div class="tag-description">
+                            {{description}}
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/tag}}
+    {{> loop}}
+    {{pagination}}
+</div>
+{{!-- newsletter subscription visible to non-member visitor --}}
+{{#unless @member}}
+{{> newsletter-subscription}}
+{{/unless}}

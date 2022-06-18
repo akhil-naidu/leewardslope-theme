@@ -1,0 +1,17 @@
+{{#unless @member}}
+<form class="members-form cover-subscribe-form text-left" data-members-form="subscribe">
+    <div class="form-field-wrap field-group-inline">
+        <label for="header-form-email" class="sr-only">Email</label>
+        <input data-members-email="" type="email" class="email form-field input-field" id="header-form-email" placeholder="Your email address" required="" autocomplete="off">
+        <button class="btn form-field" type="submit"><span>{{t "Subscribe"}}</span></button>
+    </div>
+    <div class="message-container">
+        <div class="notification success form-notification">
+            <a class="notification-close" href="javascript:;" aria-label="close notification"><span class="close-icon"><svg><use xlink:href="#i-close"/></svg></span></a>
+            <strong>{{t "Great!"}}</strong> {{t "Check your inbox and click the link to confirm your subscription"}}</div>
+        <div class="notification error form-notification">
+            <a class="notification-close" href="javascript:;" aria-label="close notification"><span class="close-icon"><svg><use xlink:href="#i-close"/></svg></span></a>
+            <strong>{{t "Error!"}}</strong> {{t "Please enter a valid email address!"}}</div>
+    </div>
+</form>
+{{/unless}}
