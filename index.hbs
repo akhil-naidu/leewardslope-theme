@@ -1,7 +1,9 @@
 {{!< default}}
 {{!-- The tag above means: insert everything in this file into the {body} of the default.hbs template --}}
 {{#is "home"}}
+{{#if @custom.show_home_hero_section}}
 {{> home-hero}}
+{{/if}}
 {{/is}}
 <div class="main">
     {{> loop}}

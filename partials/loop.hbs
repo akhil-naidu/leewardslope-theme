@@ -2,12 +2,14 @@
     <div class="row">
         <div class="col-lg-10 offset-lg-1 js-post-list-wrap">
             {{#is "home"}}
+                {{#unless @custom.hide_featured_posts_section}}
                 <h2 class="h4 section-title"><span>{{t "Featured posts"}}</span></h2>
                 {{#get "posts" limit="3" include="tags,authors" filter="featured:true"}}
                     {{#foreach posts}}
                     {{> post-item}}
                     {{/foreach}}
                 {{/get}}
+                {{/unless}}
                 <h2 class="h4 section-title"><span>{{t "Latest posts"}}</span></h2>
             {{/is}}
             {{#foreach posts}}

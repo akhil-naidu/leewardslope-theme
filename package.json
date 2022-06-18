@@ -2,10 +2,9 @@
     "name": "arun",
     "description": "Minimal personal blog theme",
     "demo": "http://arun.gbjsolution.com",
-    "version": "1.1.1",
+    "version": "2.0.0",
     "engines": {
-        "ghost": ">=4.0.0",
-        "ghost-api": "v4"
+        "ghost": ">=5.0.0"
     },
     "author": {
         "name": "GBJ solution",
@@ -29,6 +28,90 @@
     ],
     "config": {
         "posts_per_page": 8,
+        "card_assets": {
+            "exclude": [
+                "bookmark",
+                "gallery"
+            ]
+        },
+        "custom": {
+            "logo_for_dark_mode": {
+                "type": "image"
+            },
+            "default_theme_mode": {
+                "type": "select",
+                "options": [
+                    "system",
+                    "light",
+                    "dark"
+                ],
+                "default": "system"
+            },
+            "show_theme_mode_switcher_icon": {
+                "type": "boolean",
+                "default": true
+            },
+            "navigation_bar_type": {
+                "type": "select",
+                "options": [
+                    "sticky",
+                    "normal"
+                ],
+                "default": "sticky"
+            },
+            "copyright_text_override": {
+                "type": "text",
+                "default": ""
+            },
+            "show_home_hero_section": {
+                "type": "boolean",
+                "default": true,
+                "group": "homepage"
+            },
+            "home_hero_title": {
+                "type": "text",
+                "default": "Hay, I am Arun",
+                "group": "homepage"
+            },
+            "home_hero_description_override": {
+                "type": "text",
+                "group": "homepage"
+            },
+            "show_home_hero_subscription_form": {
+                "type": "boolean",
+                "default": true,
+                "group": "homepage"
+            },
+            "show_home_hero_social_links": {
+                "type": "boolean",
+                "default": true,
+                "group": "homepage"
+            },
+            "hide_featured_posts_section": {
+                "type": "boolean",
+                "default": false,
+                "group": "homepage"
+            },
+            "show_share_buttons": {
+                "type": "boolean",
+                "default": true,
+                "group": "post"
+            },
+            "show_author_info_card": {
+                "type": "boolean",
+                "default": true,
+                "group": "post"
+            },
+            "show_related_posts": {
+                "type": "boolean",
+                "default": true,
+                "group": "post"
+            },
+            "disqus_shortname": {
+                "type": "text",
+                "group": "post"
+            }
+        },
         "image_sizes": {
             "xxs": {
                 "width": 150
@@ -55,27 +138,28 @@
         "not IE 11"
     ],
     "devDependencies": {
-        "autoprefixer": "^10.2.5",
-        "browser-sync": "^2.26.14",
+        "autoprefixer": "^10.4.2",
+        "browser-sync": "^2.27.7",
         "del": "^6.0.0",
         "gulp": "^4.0.2",
         "gulp-clean-css": "^4.3.0",
         "gulp-concat": "^2.6.1",
-        "gulp-postcss": "^9.0.0",
+        "gulp-postcss": "^9.0.1",
         "gulp-rename": "^2.0.0",
-        "gulp-sass": "^4.1.0",
+        "gulp-sass": "^5.1.0",
         "gulp-sourcemaps": "^3.0.0",
         "gulp-uglify": "^3.0.2",
         "gulp-wait": "0.0.2",
         "gulp-zip": "^5.1.0",
-        "postcss": "^8.2.8"
+        "postcss": "^8.4.7",
+        "sass": "^1.49.9"
     },
     "dependencies": {
-        "clipboard": "^2.0.8",
+        "clipboard": "^2.0.10",
         "disqusLoader.js": "git+https://github.com/osvaldasvalutis/disqusLoader.js.git",
         "medium-zoom": "^1.0.6",
-        "prismjs": "^1.23.0",
-        "reframe.js": "^3.0.2",
+        "prismjs": "^1.27.0",
+        "reframe.js": "^3.0.3",
         "searchinghost": "^1.6.2"
     }
 }

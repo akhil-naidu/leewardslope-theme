@@ -21,12 +21,22 @@
             {{/if}}
             <div class="col-lg-7">
                 <div class="home-cover-content-wrap">
-                    <h1 class="heading-large">Hay, I am Akhil</h1>
+                    {{#if @custom.home_hero_title}}
+                    <h1 class="heading-large">{{@custom.home_hero_title}}</h1>
+                    {{/if}}
                     <div class="intro-description">
+                        {{#if @custom.home_hero_description_override}}
+                        {{@custom.home_hero_description_override}}
+                        {{else}}
                         {{@site.description}}
+                        {{/if}}
                     </div>
+                    {{#if @custom.show_home_hero_subscription_form}}
                     {{> home-hero-subscription}}
+                    {{/if}}
+                    {{#if @custom.show_home_hero_social_links}}
                     {{> social-links}}
+                    {{/if}}
                 </div>
             </div>
             

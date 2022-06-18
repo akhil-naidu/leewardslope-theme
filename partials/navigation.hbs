@@ -61,12 +61,14 @@
         <a href="javascript:;" class="nav-icon search-icon flex js-search-button" aria-label="Open search">
             <span><svg><use xlink:href="#i-search"/></svg></span>
         </a>
+        {{#if @custom.show_theme_mode_switcher_icon}}
         <a href="javascript:;" class="nav-icon theme-icon flex js-toggle-dark-light" aria-label="Toggle theme">
             <div class="toggle-mode flex">
                 <div class="light"><svg><use xlink:href="#i-sun"/></svg></div>
                 <span class="dark"><svg><use xlink:href="#i-moon"/></svg></span>
             </div>
         </a>
+        {{/if}}
     </div>
     {{!-- End logged in member nav and other icons --}}
 {{else}}

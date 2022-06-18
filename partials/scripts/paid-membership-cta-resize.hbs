@@ -17,4 +17,25 @@
     });
     addDataWidth(ctaBox);
     resizeObserver.observe(ctaBox);
+
+
+    let tierSwitches  = document.querySelectorAll('.tier-list button');
+    let tiers = document.querySelectorAll('.plans-wrap-inner');
+    tierSwitches.forEach((el)=> {
+        el.addEventListener('click', (e)=> {
+            let activeTier = e.target.getAttribute('data-tier')
+            tierSwitches.forEach(el => {
+                el === e.target ? el.classList.add('active') : el.classList.remove('active')
+            })
+            e.target.classList.add('active')
+            tiers.forEach((el) => {
+                if (el.getAttribute('data-tier') === activeTier) {
+                    el.classList.add('visible')
+                } else {
+                    el.classList.remove('visible')
+                }
+            })
+        })
+    })
+        
 </script>

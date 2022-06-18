@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{@site.locale}}">
+<html lang="{{@site.locale}}" data-theme="{{@custom.default_theme_mode}}">
 	<head>
 		{{! Document Settings }}
 		<meta charset="UTF-8">
@@ -22,7 +22,7 @@
 		{{! Ghost outputs important style and meta data with this tag }}
 		{{ghost_head}}
 	</head>
-	<body class="{{body_class}}" data-nav="sticky">
+	<body class="{{body_class}}" data-nav="{{@custom.navigation_bar_type}}">
 		<div class="site-wrap">
 		{{> icons/global-icons}}
 		{{> header}}

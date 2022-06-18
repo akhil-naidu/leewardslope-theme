@@ -7,27 +7,44 @@
             {{#link href="/membership/" class="plan-page-link hidden-small" }}{{t "Compare plan"}} {{> icons/arrow-right}}{{/link}}
         </div>
     </div>
+    {{#get "tiers" include="monthly_price,yearly_price,benefits" filter="visibility:public+type:paid" limit="all" as |tiers|}}
     <div class="plans-wrap flex">
-        <div class="plans-wrap-inner flex">
+        <div class="tier-list">
+            {{#foreach tiers}}
+            <button class="tier btn{{#if @last}} active{{/if}}" data-tier="{{name}}">
+                {{name}}
+            </button>
+            {{/foreach}}
+        </div>
+        {{#foreach tiers}}
+        <div class="plans-wrap-inner flex{{#if @last}} visible{{/if}}" data-tier="{{name}}"
+        {{#if monthly_price}}data-m="{{price monthly_price}}"{{/if}}
+        {{#if yearly_price}}data-y="{{price yearly_price}}"{{/if}}>
+            {{#if yearly_price}}
             <div class="plan text-center flex">
                 <h3 class="h6 plan-name">{{t "Yearly"}}</h3>
-                <div class="price h1"><sup>{{price currency=@price.currency}}</sup>{{@price.yearly}}</div>
+                <div class="price h1"><sup>{{price currency=currency}}</sup>{{price yearly_price}}</div>
                 <div class="content">
                     <span class="label label-success js-discount">{{t "Save"}} <span class="js-discount-amount">0%</span></span>
                 </div>
-                <a href="javascript:" data-members-plan="Yearly" class="btn btn-block btn-sm"><span>{{t "Subscribe now"}}</span></a>
+                <a href="javascript:" data-portal="signup/{{id}}/yearly" class="btn btn-block btn-sm"><span>{{t "Subscribe now"}}</span></a>
             </div>
+            {{/if}}
+            {{#if monthly_price}}
             <div class="plan text-center flex">
                 <h3 class="h6 plan-name">{{t "Monthly"}}</h3>
-                <div class="price h1"><sup>{{price currency=@price.currency}}</sup>{{@price.monthly}}</div>
+                <div class="price h1"><sup>{{price currency=currency}}</sup>{{price monthly_price}}</div>
                 <div class="content"></div>
-                <a href="javascript:" data-members-plan="Monthly" class="btn btn-block btn-sm"><span>{{t "Subscribe now"}}</span></a>
+                <a href="javascript:" data-portal="signup/{{id}}/monthly" class="btn btn-block btn-sm"><span>{{t "Subscribe now"}}</span></a>
             </div>
+            {{/if}}
         </div>
+        {{/foreach}}
         <div>
             {{#link href="/membership/" class="plan-page-link hidden-large" }}{{t "Compare plan"}} {{> icons/arrow-right}}{{/link}}
         </div>
     </div>
+    {{/get}}
 </div>
 
 {{!-- following block of code will be inserted at scripts block in default.hbs  --}}

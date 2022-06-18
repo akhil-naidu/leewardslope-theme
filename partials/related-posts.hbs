@@ -1,4 +1,4 @@
-{{#get "posts" limit="4" filter="tag:{{primary_tag.slug}}+id:-{{comment_id}}" include="tags"}}
+{{#get "posts" limit="4" filter="tags:[{{post.tags}}]+id:-{{post.id}}" include="tags"}}
 {{#if posts}}
 <div class="container">
     <div class="related-posts-wrap">
@@ -6,7 +6,7 @@
         <div class="row">
             {{#foreach posts}}
             <div class="col-lg-3 col-md-4 col-sm-6">
-                <article class="related-post-card">
+                <article class="related-post-card" data-id="{{post.id}}">
                 {{#if feature_image}}
                 <a href="{{url}}" class="post-img-wrap">
                     <img class="post-img" loading="lazy"

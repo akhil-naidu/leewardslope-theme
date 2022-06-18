@@ -53,21 +53,29 @@
                         </div>
                         {{/if}}
                         {{#if access}}
+                        {{#if @custom.show_share_buttons}}
                         {{> share-links}}
+                        {{/if}}
+                        {{#if @custom.show_author_info_card}}
                         {{> about-author}}
+                        {{/if}}
                         {{/if}}
                     </div>
                 </article>
                 {{> prev-next}}
                 {{#if access}}
+                {{#if @custom.disqus_shortname}}
                 {{> comment}}
+                {{/if}}
                 {{/if}}
             </div>
         </div>
     </div>
 </div>
-{{> related-posts}}
 {{/post}}
+{{#if @custom.show_related_posts}}
+{{> related-posts}}
+{{/if}}
 {{!-- newsletter subscription visible to non-member visitor --}}
 {{#unless @member}}
 {{> newsletter-subscription}}

@@ -4,7 +4,10 @@
         Remove setSysPrefColor function call below this comment if yo want to disable
         auto set theme settings based on system color preference
         */  --}}
-        setSysPrefColor();
+        let themeMode = document.documentElement.getAttribute('data-theme');
+        if (themeMode !== null && themeMode === 'system') {
+            setSysPrefColor();
+        }
         {{!-- /* set theme based on user's previous preference */ --}}
         const theme = localStorage.getItem('selected-theme');
         if (theme == 'light') {

@@ -1,0 +1,28 @@
+<script>
+    let switcher  = document.getElementById('membership-duration');
+    let pricingTables = document.querySelectorAll('.pricing-table');
+    switcher.querySelectorAll('button').forEach((el)=> {
+        el.addEventListener('click', (e)=> {
+            let activeDuration= e.target.getAttribute('data-duration')
+            switcher.setAttribute('data-active-duration', activeDuration)
+            pricingTables.forEach((table)=> {
+                table.setAttribute('data-active-duration', activeDuration)
+            })
+        })
+    })
+    //calculate discount for each table
+    pricingTables.forEach((el) => {
+        let monthly = el.getAttribute('data-m')
+        let yearly =  el.getAttribute('data-y')
+        let discount = 0
+        
+        if (!isNaN(monthly) || !isNaN(yearly)) {
+            discount = monthly ? 100 - Math.floor((yearly / 12 * 100) / monthly) : 0
+        }
+        if (discount > 0) {
+            el.querySelector('.js-discount-amount').innerHTML = '&nbsp;' + discount + '%'
+            el.querySelector('.js-discount').classList.add('visible')
+        }
+    })
+    
+</script>

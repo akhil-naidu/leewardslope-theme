@@ -21,31 +21,136 @@
                 </div>
             </div>
             {{else if @member}}
-            {{!-- free member: show premium plans --}}
-            <div class="col-lg-4 col-md-6 offset-md-2">
-                {{> members/pricing-table-yearly}}
-            </div>
-            <div class="col-lg-4 col-md-6">
-                {{> members/pricing-table-monthly}}
-            </div>
+                <div class="col-12">
+                    <div class="membership-switch flex" id="membership-duration" data-active-duration="yearly">
+                    <button class="btn" data-duration="monthly">Monthly</button>
+                    <button class="btn" data-duration="yearly">Yearly</button>
+                </div>
+                </div>
+                {{#get "tiers" include="monthly_price,yearly_price,benefits" filter="visibility:public+type:paid" limit="all" as |tiers|}}
+                {{#foreach tiers}}
+                <div class="col-lg-4 col-md-6 {{#if @first}}offset-lg-2{{/if}}">
+                    <div class="pricing-table" data-active-duration="yearly"
+                    {{#if monthly_price}}data-m="{{price monthly_price}}"{{/if}}
+                    {{#if yearly_price}}data-y="{{price yearly_price}}"{{/if}}>
+                        <div class="table-header text-center">
+                            <div class="table-title">{{name}}</div>
+                            {{#match name "=" "Free"}}
+                            <div class="price h1">
+                                <sup class="currency">$</sup>0
+                            </div>
+                            {{/match}}
+                            {{#if monthly_price}}
+                            <div class="price h1" data-price="monthly">
+                                <sup class="currency">{{price currency=currency}}</sup>{{price monthly_price}}
+                            </div>
+                            {{/if}}
+                            {{#if yearly_price}}
+                            <div class="price h1" data-price="yearly">
+                                <sup class="currency">{{price currency=currency}}</sup>{{price yearly_price}}
+                            </div>
+                            {{/if}}
+                            {{#if description}}
+                            <div class="table-description">
+                                {{description}}
+                            </div>
+                            {{/if}}
+                        </div>
+                        {{#if benefits}}
+                        <ul class="table-details icon-list">
+                            {{#foreach benefits as |benefit|}}
+                            <li>{{benefit}}</li>
+                            {{/foreach}}
+                        </ul>
+                        {{/if}}
+                        <div class="table-footer">
+                            {{#match name "=" "Free"}}
+                            {{#link class="btn btn-block" href="/signup/"}}{{t "Subscribe now"}}{{/link}}
+                            {{else}}
+                            {{#if monthly_price}}
+                            <a class="btn btn-block" href="javascript:" data-portal="signup/{{id}}/monthly" data-price="monthly"><span>{{t
+                                    "Subscribe now"}}</span></a>
+                            {{/if}}
+                            {{#if yearly_price}}
+                            <a class="btn btn-block" href="javascript:" data-portal="signup/{{id}}/yearly" data-price="yearly"><span>{{t
+                                    "Subscribe now"}}</span></a>
+                            {{/if}}
+                            {{/match}}
+                        </div>
+                        <span class="label label-success js-discount">{{t "Save"}} <span class="js-discount-amount">0%</span></span>
+                    </div>
+                </div>
+                {{/foreach}}
+                {{/get}}
             {{else}}
-            {{!-- guest visitor: show all plans --}}
-            <div class="col-lg-4 col-md-6">
-                {{> members/pricing-table-free}}
-            </div>
-            <div class="col-lg-4 col-md-6">
-                {{> members/pricing-table-yearly}}
-            </div>
-            <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
-                {{> members/pricing-table-monthly}}
-            </div>
+                <div class="col-12">
+                    <div class="membership-switch flex" id="membership-duration" data-active-duration="yearly">
+                    <button class="btn" data-duration="monthly">Monthly</button>
+                    <button class="btn" data-duration="yearly">Yearly</button>
+                </div>
+                </div>
+                {{#get "tiers" include="monthly_price,yearly_price,benefits" filter="visibility:public" limit="all" as |tiers|}}
+                {{#foreach tiers}}
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-table" data-active-duration="yearly"
+                    {{#if monthly_price}}data-m="{{price monthly_price}}"{{/if}}
+                    {{#if yearly_price}}data-y="{{price yearly_price}}"{{/if}}>
+                        <div class="table-header text-center">
+                            <div class="table-title">{{name}}</div>
+                            {{#match name "=" "Free"}}
+                            <div class="price h1">
+                                <sup class="currency">$</sup>0
+                            </div>
+                            {{/match}}
+                            {{#if monthly_price}}
+                            <div class="price h1" data-price="monthly">
+                                <sup class="currency">{{price currency=currency}}</sup>{{price monthly_price}}
+                            </div>
+                            {{/if}}
+                            {{#if yearly_price}}
+                            <div class="price h1" data-price="yearly">
+                                <sup class="currency">{{price currency=currency}}</sup>{{price yearly_price}}
+                            </div>
+                            {{/if}}
+                            {{#if description}}
+                            <div class="table-description">
+                                {{description}}
+                            </div>
+                            {{/if}}
+                        </div>
+                        {{#if benefits}}
+                        <ul class="table-details icon-list">
+                            {{#foreach benefits as |benefit|}}
+                            <li>{{benefit}}</li>
+                            {{/foreach}}
+                        </ul>
+                        {{/if}}
+                        <div class="table-footer">
+                            {{#match name "=" "Free"}}
+                            {{#link class="btn btn-block" href="/signup/"}}{{t "Subscribe now"}}{{/link}}
+                            {{else}}
+                            {{#if monthly_price}}
+                            <a class="btn btn-block" href="javascript:" data-portal="signup/{{id}}/monthly" data-price="monthly"><span>{{t
+                                    "Subscribe now"}}</span></a>
+                            {{/if}}
+                            {{#if yearly_price}}
+                            <a class="btn btn-block" href="javascript:" data-portal="signup/{{id}}/yearly" data-price="yearly"><span>{{t
+                                    "Subscribe now"}}</span></a>
+                            {{/if}}
+                            {{/match}}
+                        </div>
+                        <span class="label label-success js-discount">{{t "Save"}} <span class="js-discount-amount">0%</span></span>
+                    </div>
+                </div>
+                {{/foreach}}
+                {{/get}}
             {{/if}}
         </div>
         {{#unless @member.paid}}
         <div class="row">
             <div class="col-12">
                 <div class="pricing-currency">
-                    <small><sup>*</sup> {{t "All price is in"}} <span class="currency-name">{{@price.currency}}</span></small>
+                    <small><sup>*</sup> {{t "All price is in USD"}}</small>
                 </div>
             </div>
         </div>
@@ -61,7 +166,11 @@
         </div>
     </div>
 </div>
+{{!-- insert pricing switcher script --}}
+{{#contentFor "scripts"}}
+{{> scripts/membership-pricing-duration-switcher}}
+{{/contentFor}}
 
 {{#contentFor "scripts"}}
-{{> scripts/discount-calculator}}
+{{!-- {{> scripts/discount-calculator}} --}}
 {{/contentFor}}

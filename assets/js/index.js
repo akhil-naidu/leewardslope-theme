@@ -320,7 +320,7 @@ document.addEventListener("DOMContentLoaded", function () {
     =====================================================*/
     if(typeof tweetBtn !== 'undefined' && tweetBtn === true) {
         // select direct child blockquote and has no class
-        var quotes = document.querySelectorAll('.post-content > blockquote:not([class])');
+        var quotes = document.querySelectorAll('.post-content > blockquote:not([class]), .post-content > blockquote[class="kg-blockquote-alt"]');
         if(quotes.length >0) {
             var tweetableUrl = "";
             var tweetThisBtn = null;
